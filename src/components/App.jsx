@@ -1,12 +1,10 @@
 import { useState} from 'react';
-
-
 import ContactList from './ContactList/ContactList';
 import { Form } from './Form/Form';
 import Section from './Section/Section';
 import Filter from './Filter/Filter';
 import { ContainerGlobal } from './App.styled';
-import { useSelector } from 'react-redux/es/exports';
+
 
 // const useLocalStorage = (key, initialValue) => {
 //   const [state, setState] = useState(() => {
@@ -21,19 +19,12 @@ import { useSelector } from 'react-redux/es/exports';
 export const App = () => {
 // const [contacts, setContacts] = useLocalStorage("contacts", []);
 const [filter, setFilter] = useState("");
-const contacts = useSelector(state => state.contacts)
-
 
   const changeFilter = event => {
     setFilter(event.currentTarget.value);
   };
 
-  const getVisibleContacts = () => {
-    const filterNormalize = filter.toLowerCase(); 
-    return (filter) 
-    ? contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalize))
-    : contacts
-  };
+
 
 
   return (
@@ -43,8 +34,7 @@ const contacts = useSelector(state => state.contacts)
       </Section>
       <Section title="Contacts">
         <Filter value={filter} onChange={changeFilter} />
-        <ContactList
-          contacts={getVisibleContacts()}
+        <ContactList filter ={filter}
         />
       </Section>
     </ContainerGlobal>
