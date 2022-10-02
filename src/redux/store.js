@@ -12,6 +12,6 @@ const myReducer = createReducer([], {
 
 export const store = configureStore({
     reducer: {
-        myValue: myReducer,
+        contacts: myReducer,
     },
 })

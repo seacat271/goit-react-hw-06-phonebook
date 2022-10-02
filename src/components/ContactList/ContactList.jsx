@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
   ItemList,
   Item,
@@ -6,8 +5,12 @@ import {
   NameStyle,
   ButtonDelete,
 } from './ContactList.styled';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { deleteContact } from 'redux/store';
 
-const ContactList = ({ contacts, onHandleDelete }) => {
+const ContactList = () => {
+const dispatch = useDispatch();
+const contacts = useSelector(state => state.contacts)
   return (
     <ItemList>
       {contacts.map(({ name, id, number }) => (
@@ -15,7 +18,7 @@ const ContactList = ({ contacts, onHandleDelete }) => {
           <ItemContainer>
             {name}: <NameStyle>{number}</NameStyle>
           </ItemContainer>
-          <ButtonDelete onClick={() => onHandleDelete(id)}>Delete</ButtonDelete>
+          <ButtonDelete onClick={() => dispatch(deleteContact(id))}>Delete</ButtonDelete>
         </Item>
       ))}
     </ItemList>
@@ -24,9 +27,4 @@ const ContactList = ({ contacts, onHandleDelete }) => {
 
 export default ContactList;
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape(PropTypes.string.isRequired).isRequired
-  ).isRequired,
-  onHandleDelete: PropTypes.func.isRequired,
-};
+
