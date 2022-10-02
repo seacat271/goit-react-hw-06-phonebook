@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormInput, ButtonAdd, Input, Label } from './Form.styled';
+import { useSelector, useDispatch } from 'react-redux/es/exports';
 
 const Form = ({onSubmit}) => {
   const [name, setName] = useState("")
   const [number, setNumber] = useState("")
-
+const value = useSelector(state => state.myValue);
+console.log(value);
+const dispatch = useDispatch();
   const handleChange = event => {
     const { name, value } = event.currentTarget;
     switch (name) {
@@ -32,6 +35,7 @@ const Form = ({onSubmit}) => {
   };
 
   return(<FormInput onSubmit={handleSubmit}>
+    <div>{value}</div>
     <Label>
       Name
       <Input
@@ -56,7 +60,7 @@ const Form = ({onSubmit}) => {
         required
       />
     </Label>
-    <ButtonAdd type="submit">Add contact</ButtonAdd>
+    <ButtonAdd type="button" onClick={() => dispatch()}>Add contact</ButtonAdd>
   </FormInput>)
 }
 
