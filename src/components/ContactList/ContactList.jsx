@@ -19,7 +19,7 @@ const getVisibleContacts = () => {
   ? contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalize))
   : contacts
 };
-
+console.log(contacts)
   return (
     <ItemList>
       {getVisibleContacts().map(({ name, id, number }) => (
