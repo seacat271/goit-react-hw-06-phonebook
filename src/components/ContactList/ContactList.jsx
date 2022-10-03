@@ -7,11 +7,12 @@ import {
 } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { deleteContact } from 'redux/contacts/slice';
-import PropTypes from 'prop-types';
 
-const ContactList = ({filter}) => {
+
+const ContactList = () => {
 const dispatch = useDispatch();
 const contacts = useSelector(state => state.contacts);
+const filter = useSelector(state => state.filter);
 
 const getVisibleContacts = () => {
   const filterNormalize = filter.toLowerCase(); 
@@ -19,7 +20,7 @@ const getVisibleContacts = () => {
   ? contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalize))
   : contacts
 };
-console.log(contacts)
+
   return (
     <ItemList>
       {getVisibleContacts().map(({ name, id, number }) => (
@@ -35,7 +36,3 @@ console.log(contacts)
 };
 
 export default ContactList;
-
-ContactList.propTypes = {
-  filter: PropTypes.string,
-};

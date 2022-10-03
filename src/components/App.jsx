@@ -1,4 +1,3 @@
-import { useState} from 'react';
 import ContactList from './ContactList/ContactList';
 import { Form } from './Form/Form';
 import Section from './Section/Section';
@@ -18,14 +17,6 @@ import { ContainerGlobal } from './App.styled';
 
 export const App = () => {
 // const [contacts, setContacts] = useLocalStorage("contacts", []);
-const [filter, setFilter] = useState("");
-
-  const changeFilter = event => {
-    setFilter(event.currentTarget.value);
-  };
-
-
-
 
   return (
     <ContainerGlobal>
@@ -33,9 +24,8 @@ const [filter, setFilter] = useState("");
         <Form />
       </Section>
       <Section title="Contacts">
-        <Filter value={filter} onChange={changeFilter} />
-        <ContactList filter ={filter}
-        />
+        <Filter />
+        <ContactList />
       </Section>
     </ContainerGlobal>
   );
